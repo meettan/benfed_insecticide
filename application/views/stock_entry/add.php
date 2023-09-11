@@ -15,10 +15,7 @@
     				<!-- <label for="prod_Id" class="col-sm-3 col-form-label">Prod_Id:</label> -->
 
     				<div class="col-sm-4">
-
     					<input type="hidden" id=prod_Id name="prod_Id" class="form-control" />
-
-
     				</div>
 
     			</div>
@@ -151,47 +148,40 @@
 
     			<div class="form-group row">
     				<label for="stkpnt_id" class="col-sm-1 col-form-label">Stock Point:</label>
-
     				<div class="col-sm-3">
     					<select name="stkpnt_id" class="form-control sch_cd required" id="stkpnt_id" required>
-
     						<option value="">Select</option>
-
     						<?php
-
 								foreach($socdtls as $stkpnt){
-
 							?>
-
     						<option value="<?php echo $stkpnt->soc_id;?>"><?php echo $stkpnt->soc_name;?></option>
-
     						<?php
-
 								}
-
 							?>
-
     					</select>
-
     				</div>
     				<label for="hsn_code" class="col-sm-1 col-form-label">HSN:</label>
     				<div class="col-sm-3">
-
     					<input type="text" style="width:150px" id=hsn_code name="hsn_code" class="form-control"
     						readonly />
-
     				</div>
     				<label for="gst_rt" class="col-sm-1 col-form-label">GST Rate:</label>
     				<div class="col-sm-3">
-
     					<input type="text" style="width:150px" id=gst_rt name="gst_rt" class="form-control" readonly />
-
+    				</div>
+    			</div>
+				<div class="form-group row">
+    				<label for="stkpnt_id" class="col-sm-1 col-form-label">Batch No:</label>
+    				<div class="col-sm-3">
+    					<input type="text" name="batch_no" value="" class="form-control" required>
+    				</div>
+    				<label for="hsn_code" class="col-sm-1 col-form-label">Expiry date:</label>
+    				<div class="col-sm-3">
+    					<input type="date"  id=expiry_dt name="expiry_dt" class="form-control" required >
     				</div>
     			</div>
     			<div class="form-header">
-
     				<h4>Stock Details</h4>
-
     			</div>
     			<div class="form-group row">
 

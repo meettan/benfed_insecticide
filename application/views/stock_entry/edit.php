@@ -190,6 +190,16 @@
 								?>
 
 			</div>
+			<div class="form-group row">
+    				<label for="stkpnt_id" class="col-sm-1 col-form-label">Batch No:</label>
+    				<div class="col-sm-3">
+    					<input type="text" name="batch_no"  class="form-control" value="<?php echo $stock->batch_no; ?>" readonly>
+    				</div>
+    				<label for="hsn_code" class="col-sm-1 col-form-label">Expiry date:</label>
+    				<div class="col-sm-3">
+    					<input type="date"  id=expiry_dt name="expiry_dt" class="form-control" value="<?php echo $stock->expiry_dt; ?>" readonly>
+    				</div>
+    		</div>
 
 			<div class="form-header">
 
@@ -293,7 +303,7 @@
 				<div class="col-sm-3">
 
 					<input type="text" style="width:200px" name="qty" id="qty" class="form-control required"
-						value="<?php echo $stock->qty; ?>" />
+						value="<?php echo $stock->qty; ?>" readonly/>
 
 				</div>
 				<label for="qty" class="col-sm-1 col-form-label">Advance Forward No:</label>

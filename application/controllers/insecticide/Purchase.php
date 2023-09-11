@@ -1239,108 +1239,60 @@ class Purchase extends MX_Controller
 
 			$data_array = array(
 
-				"adv_status"  => $this->input->post('adv_status'),
-
+				"adv_status"   => $this->input->post('adv_status'),
 				"comp_id"      => $comp_id,
-				"comp_acc_cd"=> $this->input->post('comp_acc_cd'),
-
+				"comp_acc_cd"  => $this->input->post('comp_acc_cd'),
 				"prod_id"      => $prod_id,
-
+				'batch_no'     => $this->input->post('batch_no'),
+				'expiry_dt'    => $this->input->post('expiry_dt'),
 				"ro_no"        => $ro_no,
-
 				"ro_dt"        => $ro_dt,
-
 				"no_of_days"   => $no_of_days,
-
 				"due_dt"       => $due_dt,
-
 				"invoice_no"   => $invoice_no,
-
 				"invoice_dt"   =>  $invoice_dt,
-
 				"qty"          =>  $qty,
-				"advance_receipt_no"   => $receipt_no,
-
+				"advance_receipt_no"  => $receipt_no,
 				"unit"         => $unit,
-
 				"rate"         =>  $rate,
-
 				"base_price"   => $base_price,
-
 				"cgst"         => $cgst,
-
 				"sgst"         => $sgst,
-
 				"retlr_margin" => $retlr_margin,
-
 				"spl_rebt"     => $spl_rebt,
-
 				"add_adj_amt"  => $add_adj_amt,
-
 				"less_adj_amt" => $less_adj_amt,
-
 				"net_amt"      => $net_amt,
-
 				"rbt_add"      => $rbt_add,
-
 				"rbt_less"     => $rbt_less,
-
 				"trad_margin"  => $less_trad_margin,
-
 				"oth_dis"      => $less_oth_dis,
-
 				"frt_subsidy"   => $less_frt_subsidy,
-
 				"tot_amt"       => $tot_amt,
-
 				"stock_qty"     =>  $qty,
-
 				"no_of_bags"    => $no_of_bags,
-
 				"delivery_mode"  => $delivery_mode,
-
 				"reck_pt_rt"     => $reck_pt_rt,
-
 				"reck_pt_n_rt"   => $reck_pt_n_rt,
-
 				"govt_sale_rt"   => 0,
-
 				"iffco_buf_rt"   => $iffco_buf_rt,
-
 				"iffco_n_buff_rt" => $iffco_n_buff_rt,
-
 				"trans_dt"       => $trans_dt,
-
 				"trans_flag"    => $trans_flag,
-
 				"challan_flag"   => 'N',
-
 				"add_ret_margin_flag" => $add_ret_margin_flag,
-
 				"less_spl_rbt_flag" => $less_spl_rbt_flag,
-
 				"add_adj_amt_flag" => $add_adj_amt_flag,
-
 				"less_adj_amt_flag" => $less_adj_amt_flag,
-
 				"less_trad_margin_flag" => $less_trad_margin_flag,
-
 				"less_oth_dis_flag" => $less_oth_dis_flag,
-
 				"less_frght_subsdy_flag" => $less_frght_subsdy_flag,
-
 				"rnd_of_add"   =>  $this->input->post('rnd_of_add'),
-
 				"rnd_of_less"  => $this->input->post('rnd_of_less'),
-
 				"created_by"     =>  $this->session->userdata['loggedin']['user_name'],
-
 				"created_dt"     =>  date('Y-m-d h:i:s'),
-
 				"br"             => $this->session->userdata['loggedin']['branch_id'],
-
 				"fin_yr"         => $fin_id,
-
 				"stock_point"    => $stock_point
 			);
 
