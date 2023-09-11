@@ -67,12 +67,12 @@
                             <option value="">Select Product Type</option>
 
                             <option value="1" <?php echo ($schdtls->prod_type == 1)? 'selected' : '';?>>
-                            Organic-insecticides</option>
+                            Herbicide weedicides</option>
 
                             <option value="2" <?php echo ($schdtls->prod_type == 2)? 'selected' : '';?>>
-                            Inorganic-insecticides</option>
+                            Fungicide</option>
 
-                            <option value="3" <?php echo ($schdtls->prod_type == 3)? 'selected' : '';?>>Synthetic-insecticides
+                            <option value="3" <?php echo ($schdtls->prod_type == 3)? 'selected' : '';?>>Insecticides
                             </option>
 
                         </select>
