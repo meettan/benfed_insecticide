@@ -33,9 +33,7 @@
                             <option value="">Select Company</option>
 
                             <?php
-
                                 foreach($compdtls as $comp){
-
                             ?>
 
                             <option value="<?php echo $comp->comp_id;?>"
@@ -63,18 +61,10 @@
                     <div class="col-sm-4">
 
                         <select class="form-control required" id="prod_type" name="prod_type" required>
-
                             <option value="">Select Product Type</option>
-
-                            <option value="1" <?php echo ($schdtls->prod_type == 1)? 'selected' : '';?>>
-                            Herbicide weedicides</option>
-
-                            <option value="2" <?php echo ($schdtls->prod_type == 2)? 'selected' : '';?>>
-                            Fungicide</option>
-
-                            <option value="3" <?php echo ($schdtls->prod_type == 3)? 'selected' : '';?>>Insecticides
-                            </option>
-
+                            <option value="1" <?php echo ($schdtls->prod_type == 1)? 'selected' : '';?>>Herbicide weedicides</option>
+                            <option value="2" <?php echo ($schdtls->prod_type == 2)? 'selected' : '';?>>Fungicide</option>
+                            <option value="3" <?php echo ($schdtls->prod_type == 3)? 'selected' : '';?>>Insecticides</option>
                         </select>
                     </div>
 
