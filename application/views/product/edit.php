@@ -95,7 +95,16 @@
                         </select>
                     </div>
                 </div>
+                <div class="form-group row">
 
+                <label for="generic_name" class="col-sm-2 col-form-label">Generic name:</label>
+
+<div class="col-sm-10">
+
+    <input type="text" id=generic_name name="generic_name" class="form-control" value="<?php echo $schdtls->generic_name; ?>" required />
+</div>
+
+                </div>
                 <div class="form-group row">
 
                     <label for="prod_desc" class="col-sm-2 col-form-label">Product Name:</label>
@@ -109,32 +118,20 @@
                 </div>
 
                 <div class="form-group row">
-                <label for="prod_group" class="col-sm-2 col-form-label">Group:</label>
-				
-				<div class="col-sm-4">
 
-					<input type="text" id=prod_group name="prod_group" class="form-control" required value="<?php echo $schdtls->prod_group; ?>" />
+                    <label for="hsn_code" class="col-sm-2 col-form-label">HSN:</label>
 
-				</div>
+                    <div class="col-sm-4">
 
+                        <input type="text" name="hsn_code" id="hsn_code" class="form-control required"
+                            value="<?php echo $schdtls->hsn_code; ?>" />
+                    </div>
                     <label for="gst_rt" class="col-sm-2 col-form-label">GST Rate:</label>
 
                     <div class="col-sm-4">
 
                         <input type="text" name="gst_rt" class="form-control required"
                             value="<?php echo $schdtls->gst_rt; ?>" />
-                    </div>
-
-                </div>
-
-                <div class="form-group row">
-
-                    <label for="hsn_code" class="col-sm-2 col-form-label">HSN:</label>
-
-                    <div class="col-sm-10">
-
-                        <input type="text" name="hsn_code" id="hsn_code" class="form-control required"
-                            value="<?php echo $schdtls->hsn_code; ?>" />
                     </div>
 
                 </div>
@@ -198,33 +195,9 @@
                         <input type="text" id=bag name="bag" class="form-control"
                             value="<?php echo $schdtls->qty_per_bag; ?>" required />
                     </div>
-                    <label for="batch_no" class="col-sm-2 col-form-label">Batch No:</label>
-
-				<div class="col-sm-4">
-
-					<input type="text" id=batch_no name="batch_no" class="form-control" value="<?php echo $schdtls->batch_no; ?>" required />
-				 
-				</div>
+                
 
                 </div>
-
-                <div class="form-group row">
-				<label for="mfg_date" class="col-sm-2 col-form-label">Manufacturing Date:</label>
-
-				<div class="col-sm-4">
-
-					<input type="date" id=mfg_date name="mfg_date" class="form-control" value="<?php echo $schdtls->mfg_date; ?>" required />
-				 
-				</div>
-				<label for="exp_date" class="col-sm-2 col-form-label">Expiry Date:</label>
-
-				<div class="col-sm-4">
-
-					<input type="date" id=exp_date name="exp_date" class="form-control" value="<?php echo $schdtls->exp_date; ?>" required />
-				 
-				</div>
-
-			</div>
 
                 <div class="form-group row">
 

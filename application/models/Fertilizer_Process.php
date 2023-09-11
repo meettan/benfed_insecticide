@@ -27,7 +27,7 @@
 		}
 
 		/*Select Data from a table*/		
-		public function f_select($table,$select=NULL,$where=NULL,$type){
+		public function f_select($table,$select=NULL,$where=NULL,$type = NULL){
 			if(isset($select)){
 				$this->db->select($select);
 			}

@@ -41,9 +41,9 @@
 					<select class="form-control required" id="prod_type" name="prod_type"  required>
 						
 						<option value="">Select Product Type</option>
-						<option value="1">Organic-insecticides</option>
-						<option value="2">Inorganic-insecticides</option>
-						<option value="3">Synthetic-insecticides</option>
+						<option value="1">Herbicide weedicides</option>
+						<option value="2">Fungicide</option>
+						<option value="3">Insecticides</option>
 					
 					</select>
 				</div>
@@ -64,7 +64,14 @@
 					</select>
 				</div>
 			</div>
-
+			<div class="form-group row">
+				
+				<label for="generic_name" class="col-sm-2 col-form-label">Generic Name:</label>
+				 <div class="col-sm-10">
+					 <input type="text" id=generic_name name="generic_name" class="form-control" required />
+				 </div>
+			 </div>
+ 
 			
 			<div class="form-group row">
 				
@@ -78,34 +85,22 @@
 
 			</div>
 
+		
 			<div class="form-group row">
-				
-			   <label for="prod_group" class="col-sm-2 col-form-label">Group:</label>
-				
+
+				<label for="hsn_code" class="col-sm-2 col-form-label">HSN:</label>
+
 				<div class="col-sm-4">
 
-					<input type="text" id=prod_group name="prod_group" class="form-control" required />
+					<input type="text" id=hsn_code name="hsn_code" class="form-control" required />
 
 				</div>
-
-
+				
 				<label for="gst_rt" class="col-sm-2 col-form-label">GST Rate:</label>
 				
 				<div class="col-sm-4">
 
 					<input type="text" id=gst_rt name="gst_rt" class="form-control" required />
-
-				</div>
-				
-			</div>
-
-			<div class="form-group row">
-
-				<label for="hsn_code" class="col-sm-2 col-form-label">HSN:</label>
-
-				<div class="col-sm-10">
-
-					<input type="text" id=hsn_code name="hsn_code" class="form-control" required />
 
 				</div>
 
@@ -163,33 +158,27 @@
 					<input type="text" id=bag name="bag" class="form-control" required />
 				 
 				</div>
-				<label for="batch_no" class="col-sm-2 col-form-label">Batch No:</label>
+				<!-- <label for="batch_no" class="col-sm-2 col-form-label">Batch No:</label>
 
 				<div class="col-sm-4">
 
 					<input type="text" id=batch_no name="batch_no" class="form-control" required />
 				 
-				</div>
+				</div> -->
 
 			</div>
 
-			<div class="form-group row">
+			<!-- <div class="form-group row">
 				<label for="mfg_date" class="col-sm-2 col-form-label">Manufacturing Date:</label>
-
 				<div class="col-sm-4">
-
 					<input type="date" id=mfg_date name="mfg_date" class="form-control" required />
-				 
 				</div>
 				<label for="exp_date" class="col-sm-2 col-form-label">Expiry Date:</label>
 
 				<div class="col-sm-4">
-
 					<input type="date" id=exp_date name="exp_date" class="form-control" required />
-				 
 				</div>
-
-			</div>
+			</div> -->
 
 			<div class="form-group row">
 

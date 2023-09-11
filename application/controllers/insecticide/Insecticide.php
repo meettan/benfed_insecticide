@@ -565,12 +565,10 @@ public function product(){
 					$data_array = array (
 							"prod_id"    			=> $prod_id,
 							"prod_desc"   			=> $this->input->post('prod_desc'),
+							"generic_name"   	    => $this->input->post('generic_name'),
 							"prod_group"   			=> $this->input->post('prod_group'),
 							"prod_type"   			=> $this->input->post('prod_type'),
 							"mat_state"   			=> $this->input->post('mat_state'),
-							"batch_no"   			=> $this->input->post('batch_no'),
-							"mfg_date"   			=> $this->input->post('mfg_date'),
-							"exp_date"   			=> $this->input->post('exp_date'),
 							'company'     			=> $this->input->post('comp_id'),
 							"gst_rt"       			=> $this->input->post('gst_rt'),
 							"hsn_code"     			=> $this->input->post('hsn_code'),
@@ -638,11 +636,7 @@ public function product(){
 
 					"mat_state"   =>  $this->input->post('mat_state'),
 
-					"batch_no"    => $this->input->post('batch_no'),
-
-					"mfg_date"    => $this->input->post('mfg_date'),
-
-					"exp_date"    => $this->input->post('exp_date'),
+					"generic_name"    => $this->input->post('generic_name'),
 
 					"gst_rt"      =>  $this->input->post('gst_rt'),
 
@@ -673,26 +667,10 @@ public function product(){
 		}else{
 				$select = array(
 
-						"a.prod_id",
-
-						"a.company",
-
+						"a.prod_id","a.company",
 						"a.prod_desc",'prod_group',
-						
-						"a.prod_type" ,
-
-						"a.mat_state" ,"a.batch_no" ,"a.mfg_date" ,"a.exp_date" ,
-						
-						"a.gst_rt",
-						
-						"a.hsn_code"  ,
-						
-						"a.qty_per_bag",
-						
-						"b.comp_name",
-						
-						"a.storage",
-
+						"a.prod_type","a.mat_state" ,"a.generic_name" ,"a.mfg_date" ,"a.exp_date",
+						"a.gst_rt","a.hsn_code","a.qty_per_bag","b.comp_name","a.storage",
 						"a.unit"
 					);
 
