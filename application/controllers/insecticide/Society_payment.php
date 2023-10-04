@@ -128,7 +128,6 @@ public function society_payEdit(){
 			$ro                  = $this->input->post('sale_ro');
 			$select_comp         = array("short_name" );
 			$where_comp          = array("b.sale_ro" => $ro,"a.comp_id=b.comp_id"=>NULL );
-
 			$select_bnkacc       = array("acc_code");
 			$select_socacc       = array("acc_cd");
 			$where_socacc        = array("soc_id"     => $this->input->post('soc_id'));

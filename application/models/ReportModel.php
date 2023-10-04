@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class ReportModel extends CI_Model
 {
 
-    public function f_select($table, $select = NULL, $where = NULL, $type)
+    public function f_select($table, $select = NULL, $where = NULL, $type = NULL)
     {
         if (isset($select)) {
             $this->db->select($select);

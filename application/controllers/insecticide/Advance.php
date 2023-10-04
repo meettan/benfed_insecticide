@@ -641,8 +641,6 @@ public function advAdd(){
 				);
 				
 				//echo '<pre>';
-				
-				
 				// echo $this->db->last_query();
 				// exit();
 				$data_array_fin=$data_array;
@@ -661,12 +659,12 @@ public function advAdd(){
 				$data_array_fin['br_nm']= $brn->dist_sort_code;
 				
 				
-				if($this->ApiVoucher->f_advjnl( $data_array_fin)==1){
+			//	if($this->ApiVoucher->f_advjnl( $data_array_fin)==1){               API FOR VOUCHER
 					$this->AdvanceModel->f_insert('tdf_advance', $data_array);
 					$this->session->set_flashdata('msg', 'Successfully Added');
-				}else{
-					$this->session->set_flashdata('msg', 'Error in accounting!!');
-				}
+			//	}else{
+			//		$this->session->set_flashdata('msg', 'Error in accounting!!');
+			//	}
 			  redirect('adv/advancefilter');
 
 			}else {
@@ -675,15 +673,11 @@ public function advAdd(){
                 
                 $where                  = array(
                     "district"  =>  $this->session->userdata['loggedin']['branch_id']
-);
+                 );
 
 				$society['societyDtls'] = $this->AdvanceModel->f_select('mm_ferti_soc',$select,$where,0);
 
 				$society['bnk_dtls']    = $this->AdvanceModel->f_getbnk_dtl($branch);	
-
-				
-
-				
 
 				$society['date']   = $this->AdvanceModel->get_monthendDate();
 				// print_r($society['date']);

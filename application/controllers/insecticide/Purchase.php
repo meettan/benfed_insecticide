@@ -1087,39 +1087,6 @@ class Purchase extends MX_Controller
 		}
 	}
 
-	// Add stock_entry
-	//public function stockAdd(){
-
-	// //*********************************** */
-	// $curl = curl_init();
-
-	// curl_setopt_array($curl, array(
-	//   CURLOPT_URL => 'http://localhost/benfed_fin/index.php/transaction/f_acc_code',
-	//   CURLOPT_RETURNTRANSFER => true,
-	//   CURLOPT_ENCODING => '',
-	//   CURLOPT_MAXREDIRS => 10,
-	//   CURLOPT_TIMEOUT => 0,
-	//   CURLOPT_FOLLOWLOCATION => true,
-	//   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-	//   CURLOPT_CUSTOMREQUEST => 'GET',
-	//   CURLOPT_HTTPHEADER => array(
-	// 	'Cookie: ci_session=kdj63c5dnt6e3m0ursvh4rg4p269dtjr'
-	//   ),
-	// ));
-
-	// $response = curl_exec($curl);
-
-	// curl_close($curl);
-	// // echo $response;
-	// echo '<pre>';
-	// // var_dump(json_decode($response));
-	// $product['acc_cd']   = json_decode($response);
-	// var_dump($product['acc_cd']);
-	// exit;
-
-	//}
-	// /*************************************** */
-
 	public function stockAdd()
 	{
 
@@ -1337,7 +1304,6 @@ class Purchase extends MX_Controller
 			$data_array_pur['fin_fulyr'] = $fin_year;
 			$data_array_pur['br_nm'] = $br_nm->dist_sort_code;
 
-			
 			//	if($this->ApiVoucher->f_purchasejnl($data_array_pur)==1){
 
 					$this->PurchaseModel->f_insert('tdf_stock_point_trans', $data_array1);

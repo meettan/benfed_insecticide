@@ -92,7 +92,7 @@
 																	 /*Select Data from a table*/
 																	 
 																	 
-		public function f_select($table,$select=NULL,$where=NULL,$type){
+		public function f_select($table,$select=NULL,$where=NULL,$type =NULL){
 
 			if(isset($select)){
 				$this->db->select($select);
@@ -111,7 +111,7 @@
 			}
 		}
 
-		public function checkhsn_select($table,$select=NULL,$where=NULL,$type){
+		public function checkhsn_select($table,$select=NULL,$where=NULL,$type=NULL){
 
 			if(isset($select)){
 				$this->db->select($select);
@@ -132,7 +132,7 @@
 
 
 
-		public function f_select_distinct($table,$select=NULL,$where=NULL,$type){	/**Select distinct data */
+		public function f_select_distinct($table,$select=NULL,$where=NULL,$type =NULL){	/**Select distinct data */
 
 			$this->db->distinct();
 
