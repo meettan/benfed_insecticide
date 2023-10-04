@@ -25,7 +25,7 @@
 
 		}
 																				/*Select Data from a table*/				
-		public function f_select($table,$select=NULL,$where=NULL,$type){
+		public function f_select($table,$select=NULL,$where=NULL,$type = NULL){
 
 			if(isset($select)){
 				$this->db->select($select);
@@ -44,7 +44,7 @@
 			}
 		}
 
-		public function f_select_distinct($table,$select=NULL,$where=NULL,$type){	/**Select distinct data */
+		public function f_select_distinct($table,$select=NULL,$where=NULL,$type = NULL){	/**Select distinct data */
 
 			$this->db->distinct();
 
@@ -266,7 +266,7 @@ return $result;
 		 
 			 return;
 		}
-		public function f_sselect($table,$select=NULL,$where=NULL,$type){
+		public function f_sselect($table,$select=NULL,$where=NULL,$type =NULL){
 			$db2 = $this->load->database('findb', TRUE);
 			if(isset($select)){
 				$db2->select($select);
@@ -305,44 +305,6 @@ return $result;
 			return $q->result();
 		}
 
-		// public function getBranchId($rcpt){
-		// 	$q=$this->db->query("select a.dr_head, a.bank, a.trans_dt,c.branch_id,b.branch_name,c.prod_id,d.PROD_DESC,c.ro_no,c.fo_no,a.adv_amt,e.COMP_ID,e.COMP_NAME,f.remarks
-        //     from tdf_company_advance a, md_branch b,td_adv_details c,mm_product d, mm_company_dtls e,tdf_advance f
-        //     where c.branch_id = b.id
-        //     and   a.adv_dtl_id = c.receipt_no
-        //     and   a.adv_receive_no = c.detail_receipt_no
-		// 	and	  a.adv_dtl_id=f.receipt_no
-			
-        //     and   c.prod_id = d.PROD_ID
-        //     and   c.comp_pay_flag = 'Y'
-		// 	and	  a.receipt_no='$rcpt'
-		// 	and   c.comp_id = e.COMP_ID
-		// 	;"   
-        //     );
-        //     return $q->row();	
-		// }
-		/*public function getBranchId($rcpt){
-			$q=$this->db->query("select a.memo_no,a.dr_head, a.bank, a.trans_dt,c.branch_id,b.branch_name,c.prod_id,d.PROD_DESC,c.ro_no,c.fo_no,a.adv_amt,e.COMP_ID,e.COMP_NAME,f.remarks
-            from tdf_company_advance a, md_branch b,td_adv_details c,mm_product d, mm_company_dtls e,tdf_advance f
-            where c.branch_id = b.id
-            and   a.adv_dtl_id = c.receipt_no
-            and   a.adv_receive_no = c.detail_receipt_no
-			and	  a.adv_dtl_id=f.receipt_no
-			
-            and   c.prod_id = d.PROD_ID
-            and   c.comp_pay_flag = 'Y'
-			and	  a.receipt_no='$rcpt'
-			and   c.comp_id = e.COMP_ID
-			;"
-			
-			
-                
-            );
-            
-            return $q->row();
-
-								
-		}*/
 		public function  get_monthendDate(){
 			
 			$branchId=$this->session->userdata['loggedin']['branch_id'];
