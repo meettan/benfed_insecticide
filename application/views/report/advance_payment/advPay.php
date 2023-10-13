@@ -224,7 +224,8 @@
                             <tr>
                                 <td><?php echo $i++; ?></td>
 
-                                <td><?php if(!empty($ptableDatasummary->fo_name)){echo $ptableDatasummary->fo_name;}else{if(!empty($ptableDatasummary->branch_name)){echo $ptableDatasummary->branch_name;}else{echo "";}} ?></td>
+                                <!-- <td><?php //if(!empty($ptableDatasummary->fo_name)){echo $ptableDatasummary->fo_name;}else{if(!empty($ptableDatasummary->branch_name)){echo $ptableDatasummary->branch_name;}else{echo "";}} ?></td> -->
+                                <td><?php if(!empty($ptableDatasummary->branch_name)){echo $ptableDatasummary->branch_name;}else{echo "";} ?></td>
                                 <td><?php if(!empty($ptableDatasummary->fo_number)){echo $ptableDatasummary->fo_number;}else{ echo "";} ?></td>
 
                                 <td style="text-align: right;"><?php echo $ptableDatasummary->adv_amt; ?></td>
