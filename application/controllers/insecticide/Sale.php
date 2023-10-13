@@ -247,7 +247,7 @@
 						$j=$i+1;
 						$trans_no->trans_no + $i;
 						$data     = array(// 'trans_do'     =>  'INV/'.$dist_sort_code.'/'.$comp_short_name->short_name.'/'.$month.'/'.$fin_year_sort_code.'/'. $trans_no->trans_no,
-											'trans_do'     =>  'INV/'.$dist_sort_code.'/'.$comp_short_name->short_name.'/'.$month.'/'.$fin_year_sort_code.'/'. $trans_no->trans_no.'_'.$j,
+											'trans_do'     =>  'INVI/'.$dist_sort_code.'/'.$comp_short_name->short_name.'/'.$month.'/'.$fin_year_sort_code.'/'. $trans_no->trans_no.'_'.$j,
 		
 											'trans_no'     =>  $trans_no->trans_no ,
 											

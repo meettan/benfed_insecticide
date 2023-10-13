@@ -282,7 +282,7 @@ $(document).ready(function() {
         }else{
             $.ajax({
             type: "GET",
-            url: "<?php //echo site_url('api/get_api_res'); ?>",
+            url: "<?php echo site_url('api/get_api_res'); ?>",
             data: {trans_do: trans_do},
             dataType: 'html',
             beforeSend: function () {
