@@ -2540,8 +2540,9 @@ ORDER BY `op_bln` ASC");
                             group by fo_name";
 
             }else{
-                        $sql = "select c.branch_id, b.branch_name,sum(a.adv_amt)adv_amt
-                    
+                        $sql = "select c.branch_id, b.branch_name,sum(a.adv_amt)adv_amt,
+                        (select DISTINCT f.fo_name  from mm_fo_master f where  c.fo_no=f.fi_id)fo_name,
+                        (select DISTINCT f.fo_number  from mm_fo_master f where  c.fo_no=f.fi_id)fo_number
                         from tdf_company_advance a, md_branch b,td_adv_details c,mm_product d
                         where c.branch_id = b.id
                         and   a.adv_dtl_id = c.receipt_no
@@ -2552,8 +2553,9 @@ ORDER BY `op_bln` ASC");
                         and   c.comp_pay_flag = 'Y'
                         group by b.branch_name,c.branch_id
                         UNION
-                        select c.branch_id,b.branch_name,sum(a.adv_amt)adv_amt
-                    
+                        select c.branch_id,b.branch_name,sum(a.adv_amt)adv_amt,
+                        (select DISTINCT f.fo_name  from mm_fo_master f where  c.fo_no=f.fi_id)fo_name,
+                        (select DISTINCT f.fo_number  from mm_fo_master f where  c.fo_no=f.fi_id)fo_number
                                     from tdf_company_advance a, md_branch b,td_adv_details c,mm_product d,tdf_adv_fwd e
                                     where c.branch_id = b.id
                                     and   a.adv_receive_no = c.detail_receipt_no
