@@ -12,7 +12,6 @@
             $this->session->userdata('fin_yr');
 
             if(!isset($this->session->userdata['loggedin']['user_id'])){
-            
             redirect('User_Login/login');
 
        }
@@ -151,7 +150,6 @@ public function crsummrep_ho(){
         $to_dt      =   $_POST['to_date'];
 
         // $branch     =   $this->session->userdata['loggedin']['branch_id'];
-        // $comp_id  = $_POST['comp'];
 
         $mth        =  date('n',strtotime($from_dt));
 
@@ -172,7 +170,6 @@ public function crsummrep_ho(){
 
         $_SESSION['date']    =   date('d/m/Y',strtotime($from_dt)).'-'.date('d/m/Y',strtotime($to_dt));
 
-        
         // $where1              =   array("COMP_ID"  => $comp_id);
         
         // $data['compdtls']      =   $this->ReportModel->f_select("mm_company_dtls", NULL, $where1,1);
@@ -450,6 +447,40 @@ public function stkStmt_ho(){
     }
 
 }
+
+   public function stock_valuation(){
+
+        if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+            $from_dt    =   $this->input->post('from_date');
+            $to_dt      =   $this->input->post('to_date');
+            $branch     =   $this->input->post('br');
+
+            $where1              =   array("district_code"  => $branch);
+            $data['branch']      =   $this->ReportModel->f_select("md_district", NULL, $where1,1);
+            if ($branch == 0){
+                $data['product']      =    $this->ReportModel->p_consolidated_stock_all(array($from_dt,$to_dt));
+            }else{
+                $data['product']      =    $this->ReportModel->p_consolidated_stock(array($from_dt,$to_dt,$branch));
+
+            }
+            
+            $_SESSION['date']    =   date('d/m/Y',strtotime($from_dt)).'-'.date('d/m/Y',strtotime($to_dt));
+            $this->load->view('post_login/fertilizer_main');
+            $this->load->view('report/stk_valuation/stk_stmt',$data);
+            $this->load->view('post_login/footer');
+
+        }else{
+
+            $select1      = array("district_code","district_name");
+            $where =array('1 order by district_name'=>null);
+            $data['all_branch']      =   $this->ReportModel->f_select("md_district", $select1, $where,0);
+            $this->load->view('post_login/fertilizer_main');
+            $this->load->view('report/stk_valuation/stk_stmt_ip',$data);
+            $this->load->view('post_login/footer');
+        }
+
+    }
 
         /****************************** */
 
@@ -945,13 +976,11 @@ public function stkScomp_all(){
             if($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 $from_dt    =   $_POST['from_date'];
-
                 $to_dt      =   $_POST['to_date'];
 
                 $comp_id    =   $this->input->post('company');
-
                 $prod_id    =   $this->input->post('product');
-
+               
                 $ro         =   $this->input->post('ro');
 
                 $branch     =   $this->session->userdata['loggedin']['branch_id'];
@@ -982,11 +1011,10 @@ public function stkScomp_all(){
                 $data['stkpoint']     =   $this->ReportModel->f_get_stockpoint($ro);
                
                 $data['closing']     =   $this->ReportModel->f_get_balance_rowise($branch,$from_dt,$to_dt,$opndt);
-
                 $where1              =   array("district_code"  =>  $this->session->userdata['loggedin']['branch_id']);
-
                 $data['branch']      =   $this->ReportModel->f_select("md_district", NULL, $where1,1);
-                
+                $data['compname']    =   $this->ReportModel->f_select("mm_company_dtls",array('COMP_NAME'),array('COMP_ID'=>$comp_id),1);
+                $data['prodname']    =   $this->ReportModel->f_select("mm_product",array('PROD_DESC'), array('PROD_ID'=>$prod_id),1);
                 $this->load->view('post_login/fertilizer_main');
                 $this->load->view('report/stk_ro/stk_ro',$data);
                 $this->load->view('post_login/footer');
@@ -1360,7 +1388,6 @@ public function hsnsumrypurrep(){
                 $_SESSION['date']    =   date('d/m/Y',strtotime($from_dt)).'-'.date('d/m/Y',strtotime($to_dt));
 
                 // $data['stkpoint']     =   $this->ReportModel->f_get_stockpoint($ro);
-                
                 $data['purchase']    =   $this->ReportModel->f_get_purchaserep($branch,$from_dt,$to_dt);
 
                 $where1              =   array("district_code"  =>  $this->session->userdata['loggedin']['branch_id']);
@@ -1603,6 +1630,8 @@ public function crngstunreg(){
 
                 $soc_id     =   $this->input->post('soc_id');
 
+                $comp_id     =   $this->input->post('comp_id');
+
                 $br         =   $this->input->post('br');
 
                 $branch     =   $this->session->userdata['loggedin']['branch_id'];
@@ -1627,7 +1656,7 @@ public function crngstunreg(){
                 $_SESSION['date']   =   date('d/m/Y',strtotime($from_dt)).'-'.date('d/m/Y',strtotime($to_dt));
                 
                 $data['sales']      =   $this->ReportModel->f_get_sales_society($branch,$from_dt,$to_dt,$soc_id);
-                $data['br_sales']   =   $this->ReportModel->f_get_sales_branch($from_dt,$to_dt,$br);
+                $data['br_sales']   =   $this->ReportModel->f_get_sales_branch($from_dt,$to_dt,$br,$comp_id);
               
                 $where1             =   array("district_code"  =>  $this->session->userdata['loggedin']['branch_id']);
                 $where2             =   array("district_code"  => $br);
@@ -1646,9 +1675,10 @@ public function crngstunreg(){
                 $where       = array("district"  =>  $this->session->userdata['loggedin']['branch_id']);
 
                 $society['societyDtls']   = $this->ReportModel->f_select('mm_ferti_soc',$select,$where,0);
+              
+                $data['all_company']      =   $this->ReportModel->f_select("mm_company_dtls",array("COMP_ID","COMP_NAME"), array('1 order by COMP_NAME'=>NULL),0);
                 $data['all_branch']       = $this->ReportModel->f_select("md_district", $select1,array('1 order by district_name'=>NULL),0);
                 $this->load->view('post_login/fertilizer_main');
-                // $this->load->view('report/sale_society/input',$society);
                 $this->load->view('report/sale_br/input',$data);
                 $this->load->view('post_login/footer');
                 
@@ -2239,7 +2269,6 @@ public function soc_payblepaid(){
 				$where1              =   array("district_code"  =>  $this->session->userdata['loggedin']['branch_id']);
 				$br_name      =   $this->ReportModel->f_select("md_district", NULL, $where1,1);
 				$all_data =$this->ReportModel->f_get_soc_ledger($from_dt,$to_dt , $branch,$soc_id);
-				
 				$paid     =$this->ReportModel->f_get_soc_paid($from_dt,$to_dt , $branch);
                 $gstno=explode('-',$this->input->post('soc_id'))[1];
 		}else{
@@ -2305,7 +2334,6 @@ public function soc_payblepaid(){
         }else{
 
             $data['branch']     =   $this->ReportModel->f_get_district_asc();
-
             $data['company']    =   $this->ReportModel->f_select("mm_company_dtls", NULL, array('1 order by COMP_NAME'=>NULL), 0);
 
             $this->load->view('post_login/fertilizer_main');
@@ -2527,5 +2555,91 @@ public function soc_payblepaid(){
             $this->load->view('post_login/footer');
         }
     }
+    public function tcs_payable(){
+        if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+           
+            $frm_date = $this->input->post('fr_date');
+            $to_date  = $this->input->post('to_date');
+            $data['tableData']=$this->ReportModel->tcs_payable($frm_date,$to_date);
+            $data['distname']    =   $this->ReportModel->f_select("md_district", NULL, array('district_code'=>$this->session->userdata['loggedin']['branch_id']), 1);
+            $data['fDate']= $frm_date;
+            $data['tDate']=$to_date;
+          
+           $this->load->view('post_login/fertilizer_main');
+           $this->load->view('report/tcs_payable/advPay.php',$data);
+           $this->load->view('post_login/footer');
+        }else{
+
+            $data['branch']     =   $this->ReportModel->f_get_district_asc();
+            $data['company']    =   $this->ReportModel->f_select("mm_company_dtls", NULL, array('1 order by COMP_NAME'=>NULL), 0);
+            $this->load->view('post_login/fertilizer_main');
+            $this->load->view('report/tcs_payable/advPay_ip.php',$data);
+            $this->load->view('post_login/footer');
+        }
+    }
+    public function cancel_invoice_list(){
+        if($_SERVER['REQUEST_METHOD'] == "POST") {
+            $frm_date = $this->input->post('fr_date');
+            $to_date  = $this->input->post('to_date');
+            $bt  = $this->input->post('bt');
+            
+            $select   = array('a.*','b.branch_name');
+            
+            if($bt == 1){
+                $where = array('a.br_cd=b.id'=> NULL,'a.do_dt >='=>$frm_date,'a.do_dt <='=>$to_date ,'a.ack !='=>'');
+            }else{
+                $where = array('a.br_cd=b.id'=> NULL,'a.do_dt >='=>$frm_date,'a.do_dt <='=>$to_date ,'a.ack ='=>'');
+            }
+            $data['tableData']=$this->ReportModel->f_select("td_sale_cancel a,md_branch b", NULL, $where, 0);
+            $data['distname']    =   $this->ReportModel->f_select("md_district", NULL, array('district_code'=>$this->session->userdata['loggedin']['branch_id']), 1);
+            $data['fDate']= $frm_date;
+            $data['tDate']=$to_date;
+            $data['bt']   = $bt;
+          
+           $this->load->view('post_login/fertilizer_main');
+           $this->load->view('report/cancel_invoice/data_list.php',$data);
+           $this->load->view('post_login/footer');
+        }else{
+
+            $data['branch']     =   $this->ReportModel->f_get_district_asc();
+            $data['company']    =   $this->ReportModel->f_select("mm_company_dtls", NULL, array('1 order by COMP_NAME'=>NULL), 0);
+            $this->load->view('post_login/fertilizer_main');
+            $this->load->view('report/cancel_invoice/data_ip.php',$data);
+            $this->load->view('post_login/footer');
+        }
+    }
+    public function tcs_report(){
+        if($_SERVER['REQUEST_METHOD'] == "POST") {
+            $frm_date = $this->input->post('fr_date');
+            $to_date  = $this->input->post('to_date');
+            $select   = array('a.*','b.branch_name','c.COMP_NAME');
+
+            $whered = array();$wherec = array();
+            if($this->input->post('branch_id') != 0){
+                $whered = array('a.br '=>$this->input->post('branch_id'));
+            }
+            if($this->input->post('comp_id') != 0){
+                $wherec = array('a.comp_id '=>$this->input->post('comp_id'));
+            }
+            $where = array('a.br=b.id'=> NULL,'a.comp_id=c.COMP_ID'=> NULL,'a.invoice_dt >='=>$frm_date,'a.invoice_dt <='=>$to_date);
+            
+            $data['tableData'] = $this->ReportModel->f_select("td_purchase a,md_branch b,mm_company_dtls c", NULL,array_merge($where,$whered,$wherec), 0);
+            $data['fDate']= $frm_date;
+            $data['tDate']=$to_date;
+          
+           $this->load->view('post_login/fertilizer_main');
+           $this->load->view('report/tcs/data_list.php',$data);
+           $this->load->view('post_login/footer');
+        }else{
+
+            $data['branch']     =   $this->ReportModel->f_get_district_asc();
+            $data['company']    =   $this->ReportModel->f_select("mm_company_dtls", NULL, array('1 order by COMP_NAME'=>NULL), 0);
+            $this->load->view('post_login/fertilizer_main');
+            $this->load->view('report/tcs/data_ip.php',$data);
+            $this->load->view('post_login/footer');
+        }
+    }
+    
         
   }

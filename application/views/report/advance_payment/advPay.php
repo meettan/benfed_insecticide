@@ -71,7 +71,7 @@
             '                                         .underline { text-decoration: underline; }' +
             '                                         .left { margin-left: 315px;} ' +
             '                                         .right { margin-right: 375px; display: inline; }' +
-            '                                          table { border-collapse: collapse; font-size: 18px;}' +
+            '                                          table { border-collapse: collapse; font-size: 12px;}' +
             '                                          th, td { border: 0px solid black; border-collapse: collapse; padding: 6px;}' +
             '                                           th, td { }' +
             '                                         .border { border: 0px solid black; } ' +
@@ -99,13 +99,30 @@
                 <h4>THE WEST BENGAL STATE CO.OP.MARKETING FEDERATION LTD.</h4>
                 <h4>HEAD OFFICE: SOUTHEND CONCLAVE, 3RD FLOOR, 1582 RAJDANGA MAIN ROAD, KOLKATA-700107.</h4>
                 <h3>Advance Payment Voucher Between:<?php echo  date("d/m/Y", strtotime($fDate)) . ' To ' . date("d/m/Y", strtotime($tDate)) ?></h3>
+                <?php
+
+
+    if ($tableData) {
+
+    $totalnetamth = 0;
+    $totalTdsh = 0;
+    foreach ($tableDatasummary as $ptableDatasummary) {
+    
+        $tdsh = round(0.001 * round($ptableDatasummary->adv_amt, 2));
+        $totalTdsh = $totalTdsh + $tdsh; 
+        $netamth = round(round($ptableDatasummary->adv_amt, 2) - $tdsh);
+        $totalnetamth = $totalnetamth + $netamth;
+
+        } 
+    }
+    ?>
 
                 <h5 style="text-align:left"><label><?php echo $companyName; ?>:</label> &ensp;&ensp;<?php echo round($total_Voucher->adv_amt, 2); ?> DR</h5>
                 <h5 style="text-align:left"><label><?php foreach ($tableData as $bnk) {
                                                         echo $bnk->bnk;
                                                         break;
-                                                    }; ?>:</label> &ensp;&ensp;<?php echo round($total_Voucher->net_amt, 2); ?> CR</h5>
-                <h5 style="text-align:left"><label>TDS U/S 194Q:</label> &ensp;&ensp;<?php echo round($total_Voucher->tds, 2); ?> CR </h5>
+                                                    }; ?>:</label> &ensp;&ensp;<?php echo round($totalnetamth); ?> CR</h5>
+                <h5 style="text-align:left"><label>TDS U/S 194Q:</label> &ensp;&ensp;<?php echo round($totalTdsh); ?> CR </h5>
 
             </div>
             <br>
@@ -145,7 +162,7 @@
                         foreach ($tableData as $ptableData) {
                             // $total=($ptableData->adv_amt+$total);
                             $total += $ptableData->adv_amt;
-                    ?>
+                        ?>
 
                             <tr>
                                 <td><?php echo $i++; ?></td>
@@ -157,22 +174,21 @@
                                 <td><?php echo $ptableData->fo_number . '-' . $ptableData->fo_name; ?></td>
                                 <td><?php echo $ptableData->adv_amt; ?></td>
                                 <td><?php 
-                                echo round(0.001 * round($ptableData->adv_amt, 2), 2);
-                                $tds = 0.001 * $ptableData->adv_amt;
+                                echo round((0.001 * $ptableData->adv_amt),2);
+                                $tds = round((0.001 * $ptableData->adv_amt),2);
                                     $totalTds = $totalTds + $tds; ?></td>
-                                <td><?php $netamt = (round($ptableData->adv_amt, 2) - $tds);
-                                    echo round($netamt, 2);
+                                <td><?php $netamt =round(($ptableData->adv_amt - $tds),2);
+                                    echo $netamt;
                                     $totalnetamt = $totalnetamt + $netamt; ?></td>
                             </tr>
-
 
                         <?php    } ?>
 
                         <tr>
                             <td colspan="7"><b>Total</b></td>
                             <td><b><?php echo round($total, 2); ?></b></td>
-                            <td><b><?php echo round($totalTds, 2); ?></b></td>
-                            <td><b><?php echo round($totalnetamt, 2); ?></b></td>
+                            <td><b><?php echo $totalTds; ?></b></td>
+                            <td><b><?php echo $totalnetamt; ?></b></td>
                         </tr>
                     <?php
                     } else {
@@ -211,7 +227,6 @@
 
 
                     if ($tableData) {
-
                         $i = 1;
                         $total = 0;
                         $totalnetamt = 0;
@@ -224,16 +239,15 @@
                             <tr>
                                 <td><?php echo $i++; ?></td>
 
-                                <!-- <td><?php //if(!empty($ptableDatasummary->fo_name)){echo $ptableDatasummary->fo_name;}else{if(!empty($ptableDatasummary->branch_name)){echo $ptableDatasummary->branch_name;}else{echo "";}} ?></td> -->
-                                <td><?php if(!empty($ptableDatasummary->branch_name)){echo $ptableDatasummary->branch_name;}else{echo "";} ?></td>
+                                <td><?php if(!empty($ptableDatasummary->fo_name)){echo $ptableDatasummary->fo_name;}else{if(!empty($ptableDatasummary->branch_name)){echo $ptableDatasummary->branch_name;}else{echo "";}} ?></td>
                                 <td><?php if(!empty($ptableDatasummary->fo_number)){echo $ptableDatasummary->fo_number;}else{ echo "";} ?></td>
 
                                 <td style="text-align: right;"><?php echo $ptableDatasummary->adv_amt; ?></td>
-                                <td style="text-align: right;"><?php  echo round(0.001 * round($ptableDatasummary->adv_amt, 2), 2);
-                                $tds = 0.001 * $ptableDatasummary->adv_amt;
+                                <td style="text-align: right;"><?php  echo round((0.001 * $ptableDatasummary->adv_amt),2);
+                                $tds = round((0.001 * $ptableDatasummary->adv_amt),2);
                                     $totalTds = $totalTds + $tds; ?></td>
-                                <td style="text-align: right;"><?php $netamt = (round($ptableDatasummary->adv_amt, 2) - $tds);
-                                    echo round($netamt, 2);
+                                <td style="text-align: right;"><?php $netamt = round(($ptableDatasummary->adv_amt - $tds),2);
+                                    echo $netamt;
                                     $totalnetamt = $totalnetamt + $netamt; ?></td>
                             </tr>
 
@@ -244,7 +258,7 @@
                             <td colspan="3"><b>Total</b></td>
                             <td style="text-align: right;"><b><?php echo round($total, 2); ?></b></td>
                             <td style="text-align: right;"><b><?php echo round($totalTds, 2); ?></b></td>
-                            <td style="text-align: right;"><b><?php echo round($totalnetamt, 2); ?></b></td>
+                            <td style="text-align: right;"><b><?php echo $totalnetamt; ?></b></td>
                         </tr>
                     <?php
                     } else {
@@ -300,12 +314,15 @@
             
                 
                 <?php  $bank_name = '';$branch_name = ''; $acc_num = '';$address ='';
-                 $cbank_name ='';$cbranch_name = '';$cacc_num = '';$cifsc ='';
-                foreach ($tableData as $bnk) {
-                    $bank_name = $bnk->bnk;$branch_name = $bnk->bnk_branch_name; $acc_num = $bnk->ac_no;
+                 $cbank_name ='';$cbranch_name = '';$cacc_num = '';$cifsc ='';$comp_name='';
+                // if($company_id != 1){
+                    foreach ($tableData as $bnk) {
+                    $bank_name = $bnk->bnk;$branch_name = $bnk->bnk_branch_name; $acc_num = $bnk->ac_no;$comp_name= $bnk->comp_name;
                     $cbank_name = $bnk->cbank;$cbranch_name = $bnk->cbnk_branch_name; $cacc_num = $bnk->cac_no;$cifsc=$bnk->cifsc;
                                                         break;
-                                                    }; ?>
+                                                    }; 
+                //   }                                
+                                                    ?>
                 <p style="text-align:left"> &ensp;SCMF/FIN/&ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp;&ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp;<b>Date:<?=date('d/m/Y')?></b></p>
                 <h5 style="text-align:left;font-size:18px"><label>To</label> &ensp;&ensp;<br>The Manager</br><?=$bank_name?>,<br><?=$branch_name?>,
                 <br>Kolkata - 700019</h5>
@@ -313,27 +330,29 @@
             </div>
             <br>
            <div style="line-height: 1.6;font-size:18px">
-            Sir,<br>&ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp;We are authorizing you to remit by debiting our Savings Account No.  <?=$acc_num?> through NEFT/RTGS/Fund Transfer, details are being provided below:
+            Sir,<br>&ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp; &ensp;&ensp;We are authorizing you to remit by debiting our Savings Account No.  <?=$acc_num?> in favour of
+            <?=$comp_name?> through NEFT/RTGS/Fund Transfer, details are being provided below:
 
            <br><br>
-           <?php if($company_id == 1) { ?>
+           <?php if($company_id == 1|| $company_id == 10 || $company_id == 11) { ?>
            <table style="width:100%;border: 1px solid black !important;border-collapse:collapse !important;" >
                 <thead>
                     <tr  >
                         <th style="border: 1px solid black !important">DISTRICT</th>
                         <th style="border: 1px solid black !important">IFS CODE</th>
                         <th style="border: 1px solid black !important">BENEACCNO</th>
-                        <th style="border: 1px solid black !important">BENENAME</th>
+                        <!-- <th style="border: 1px solid black !important">BENENAME</th> -->
                         <th style="border: 1px solid black !important">AMOUNT</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php   
+                    <?php   $totalnetamt = 0;
                             if($tableData) {
                             $i = 1;
                             $total = 0;
                             $totalnetamt = 0;
                             $totalTds = 0;
+                            $tds = 0;
                             foreach ($tableDatasummary as $ptableDatasummary) {
                             $total += $ptableDatasummary->adv_amt;
                     ?>
@@ -341,16 +360,21 @@
                         <td style="border: 1px solid black !important"><?php if(!empty($ptableDatasummary->fo_name)){echo $ptableDatasummary->fo_name;}?></td>
                         <td style="border: 1px solid black !important"><?=$cifsc?></td>
                         <td style="border: 1px solid black !important"><?php if(!empty($ptableDatasummary->fo_number)){echo $ptableDatasummary->fo_number;}else{ echo "";} ?></td>
-                        <td style="border: 1px solid black !important">IFFCO</td>
-                        <td style="border: 1px solid black !important"><?php $netamt = (round($ptableDatasummary->adv_amt, 2) - $tds);
-                                    echo round($netamt, 2);
+                       
+                        <?php  $tds = round((0.001 * $ptableDatasummary->adv_amt),2); ?>
+                        <td style="border: 1px solid black !important"><?php $netamt = round(($ptableDatasummary->adv_amt - $tds),2);  ?>
+                       
+                            <?php        echo $netamt;
                                     $totalnetamt = $totalnetamt + $netamt; ?></td>
                     </tr>
 
                     <?php    }  }?>
                     <tr>
-                        <td colspan="4" style="text-align:center">TOTAL</td>
-                        <td><?=$totalnetamt?></td>
+                        <td colspan="3" style="text-align:center">TOTAL</td>
+                        <td><?php echo $totalnetamt; ?> </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" style="text-align:center">Rupee : <?=getIndianCurrency($totalnetamt)?></td>
                     </tr>
                 </tbody>
                
@@ -363,9 +387,9 @@
                 <tr>
                     <td style="width:30%">Branch Name:</td><td><?=$cbranch_name?></td>
                 <tr>
-                <tr>
+                <!-- <tr>
                     <td style="width:30%">Name of A/C Holder:</td><td><?=$companyName?></td>
-                <tr>
+                <tr> -->
                 <tr>
                     <td style="width:30%">Account no :</td><td><?=$cacc_num?> </td>
                 <tr>
@@ -373,7 +397,7 @@
                     <td style="width:30%">IFS CODE :</td><td><?=$cifsc?></td>
                 <tr>
                 <tr>
-                    <td style="width:30%">Amount :</td><td>Rs.  <?=$totalnetamt?> (<?=getIndianCurrency($totalnetamt)?>)</td>
+                    <td style="width:30%">Amount :</td><td>Rs.  <?php echo $totalnetamt; ?> (<?=getIndianCurrency($totalnetamt)?>)</td>
                 <tr>
              <table>   
             <?php } ?> 
@@ -396,10 +420,16 @@
                         <td style="border:none;"></td>
                         <td style="border:none;">General Manager(Administration)</td>   
                         <?php }elseif($sig == 3){ ?> 
-                            <td style="border:none;"></td>
+                        <td style="border:none;"></td>
                         <td style="border:none;">Chief Audit & Accounts Officer</td>
                         <td style="border:none;"></td>
                         <td style="border:none;">General Manager(Administration)</td>
+                        <?php }elseif($sig == 4){ ?>
+                        <td style="border:none;"></td>
+                        <td style="border:none;">Manager Accounts</td>
+                        <td style="border:none;"></td>
+                        <td style="border:none;">Deputy Manager Accounts</td>
+
                         <?php } ?>
                     </tr>
                 </tbody>
