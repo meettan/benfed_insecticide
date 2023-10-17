@@ -40,7 +40,21 @@
     }
     $Rupees = implode('', array_reverse($str));
     $paise = ($decimal > 0) ? "And " . ($words[$decimal / 10] . " " . $words[$decimal % 10]) . ' Paise ' : '';
-    return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise.'Only';
+   // return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise.'Only';
+    $decimal_part = $decimal;
+    if($decimal_part > 0 ){
+      $first_p =  intdiv($decimal_part, 10); 
+      $second_p = fmod($decimal_part, 10) ;
+     }
+     $wordsp = array(0 => '', 1 => 'one', 2 => 'two',
+     3 => 'three', 4 => 'four', 5 => 'five', 6 => 'six',
+     7 => 'seven', 8 => 'eight', 9 => 'nine');
+     if($decimal_part > 0 ){
+     $paise_n = $wordsp[round($first_p)].' '.$wordsp[round($second_p)].' Paise';
+     }else{
+      $paise_n = '';
+     }
+     return ($Rupees ? $Rupees . 'Rupees ' : '') . $paise_n;
     }
 
     function get_already_procured($kms_yr,$reg_no){
