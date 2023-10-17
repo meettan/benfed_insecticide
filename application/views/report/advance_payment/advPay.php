@@ -98,7 +98,7 @@
 
                 <h4>THE WEST BENGAL STATE CO.OP.MARKETING FEDERATION LTD.</h4>
                 <h4>HEAD OFFICE: SOUTHEND CONCLAVE, 3RD FLOOR, 1582 RAJDANGA MAIN ROAD, KOLKATA-700107.</h4>
-                <h3>Advance Payment Voucher Between:<?php echo  date("d/m/Y", strtotime($fDate)) . ' To ' . date("d/m/Y", strtotime($tDate)) ?></h3>
+                <h3>Advance Payment Voucher of Insecticide Between:<?php echo  date("d/m/Y", strtotime($fDate)) . ' To ' . date("d/m/Y", strtotime($tDate)) ?></h3>
                 <?php
 
 
