@@ -476,7 +476,7 @@
         if ($err) {
           echo "cURL Error #:" . $err;
         } else {
-          echo $response.'/'.$doc_no;
+          echo $response;
         }
         }
 
