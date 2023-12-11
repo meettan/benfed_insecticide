@@ -312,10 +312,10 @@
 						$data_array_fin['fin_fulyr']=$fin_year_sort_code;
 						$data_array_fin['br_nm']= $br_nm->dist_sort_code;
 						
-						$select_bracc   = array("acc_cd");
+						$select_bracc   = array("i_acc_cd");
 						$where_bracc     = array("soc_id"=> $_POST['soc_id'][$i] );
 						$bracc=$this->SaleModel->f_select('mm_ferti_soc',$select_bracc,$where_bracc,1);
-						$data_array_fin['acc_cd']=$bracc->acc_cd;
+						$data_array_fin['acc_cd']=$bracc->i_acc_cd;
 					
 					  $this->SaleModel->f_salejnl( $data_array_fin);
 					   $this->SaleModel->f_insert('td_sale', $data);
