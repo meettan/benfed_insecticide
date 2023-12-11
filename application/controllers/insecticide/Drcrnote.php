@@ -435,11 +435,11 @@ public function drnoteReport()
 	
 					$data_array_cr['fin_fulyr']=$fin_year;
 					$data_array_cr['br_nm']= $brn->dist_sort_code;
-				//	if($this->DrcrnoteModel->f_crnjnl($data_array_cr)!=0){
+					if($this->DrcrnoteModel->f_crnjnl($data_array_cr)!=0){
 						$this->DrcrnoteModel->f_insert('tdf_dr_cr_note', $data);
-					// }else{
-					// 	echo "<script>alert('Credit Note has not yet been done.');</script>";
-					// }
+					 }else{
+					 	echo "<script>alert('Credit Note has not yet been done.');</script>";
+					 }
 					
 		}
 		$data_cr  = array (
@@ -496,7 +496,7 @@ public function drnoteReport()
 	
 					$data_array_crt['fin_fulyr']=$fin_year;
 					$data_array_crt['br_nm']= $brn->dist_sort_code;
-			//		$this->DrcrnoteModel->f_totcrnjnl( $data_array_crt);
+				$this->DrcrnoteModel->f_totcrnjnl($data_array_crt);
 					
 					$this->session->set_flashdata('msg', 'Successfully Added');
 	
