@@ -317,7 +317,7 @@
 						$bracc=$this->SaleModel->f_select('mm_ferti_soc',$select_bracc,$where_bracc,1);
 						$data_array_fin['acc_cd']=$bracc->acc_cd;
 					
-					//   $this->SaleModel->f_salejnl( $data_array_fin);
+					  $this->SaleModel->f_salejnl( $data_array_fin);
 					   $this->SaleModel->f_insert('td_sale', $data);
 					   $data1     = array(
 										   'sale_inv_no'  =>  'INV/'.$dist_sort_code.'/'.$comp_short_name->short_name.'/'.$month.'/'.$fin_year_sort_code.'/'. $trans_no->trans_no.'_'.$j,

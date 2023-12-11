@@ -370,7 +370,7 @@ public function society_payEdit(){
 								
 								$data_cr_fin['adv_acc'] = $adv_acc->adv_acc;
 								
-							//	$this->ApiVoucher->f_recvjnl_dr($data_cr_fin);
+								$this->ApiVoucher->f_recvjnl_dr($data_cr_fin);
 								
 							}
 				
@@ -430,7 +430,7 @@ public function society_payEdit(){
 						$data_array_fin['rem'] ="Amount Received From ".$soc_name->soc_name." vide sale invoice no: " .$this->input->post('trans_do');
 						/***********For Cash or Bank head */
 						if($tot_bnk > 0 ||$tot_bnk != '' || $tot_bnk !=null){
-					//	$this->ApiVoucher->f_recvjnl($data_array_fin);
+						$this->ApiVoucher->f_recvjnl($data_array_fin);
 						}
 						
 					
@@ -485,7 +485,7 @@ public function society_payEdit(){
 						
 						$data_array_fin['rem'] ="Amount Received From ".$soc_name->soc_name." vide sale invoice no: " .$this->input->post('trans_do');
 					
-					  // $this->ApiVoucher->f_recvjnl_soc($data_array_fin);
+					   $this->ApiVoucher->f_recvjnl_soc($data_array_fin);
 
                     
 						if ($this->input->post('tot_dr_amt')>0){
