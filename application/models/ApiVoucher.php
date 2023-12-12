@@ -82,7 +82,7 @@ function f_purchasejnl($data){
   // curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 	curl_setopt_array($curl, array(
 	
-	CURLOPT_URL => 'http://localhost/benfed/Benfed_finance/index.php/api_voucher/purchase_voucher',
+	CURLOPT_URL => 'http://localhost/benfed/Benfed_finance/index.php/api_voucher/purchase_voucher_ins',
 
 	 CURLOPT_RETURNTRANSFER => true,
 	  CURLOPT_ENCODING => '',
