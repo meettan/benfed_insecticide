@@ -642,7 +642,7 @@
 
 			$db2->select('ac_name,sl_no, br_id');
 			$db2->where('mngr_id',3);
-			$db2->where('subgr_id',196);
+			$db2->where('subgr_id',307);
 			// $db2->where('br_id',342);
 			$db2->where_in('br_id',[342,0]);
 			
