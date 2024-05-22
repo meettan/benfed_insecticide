@@ -429,9 +429,14 @@
                         <td style="border:none;">Manager Accounts</td>
                         <td style="border:none;"></td>
                         <td style="border:none;">Deputy Manager Accounts</td>
+                       
+                        <?php }elseif($sig == 5){ ?>
+                        <td style="border:none;"></td>
+                        <td style="border:none;">Manager Accounts</td>
+                        <td style="border:none;"></td>
+                        <td style="border:none;">General Manager(Business)</td>
 
                         <?php } ?>
-                    </tr>
                 </tbody>
             </table>
             <table style="margin-top:0px; border:none;font-weight:bold" id="example" width="100%" cellspacing="0" cellpadding="0" border="0">
