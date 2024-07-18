@@ -65,6 +65,7 @@
                             <option value="1" <?php echo ($schdtls->prod_type == 1)? 'selected' : '';?>>Herbicide weedicides</option>
                             <option value="2" <?php echo ($schdtls->prod_type == 2)? 'selected' : '';?>>Fungicide</option>
                             <option value="3" <?php echo ($schdtls->prod_type == 3)? 'selected' : '';?>>Insecticides</option>
+                            <option value="3" <?php echo ($schdtls->prod_type == 4)? 'selected' : '';?>>PGR</option>
                         </select>
                     </div>
 

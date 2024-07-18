@@ -44,6 +44,7 @@
 						<option value="1">Herbicide weedicides</option>
 						<option value="2">Fungicide</option>
 						<option value="3">Insecticides</option>
+						<option value="4">PGR</option>
 					
 					</select>
 				</div>
