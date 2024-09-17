@@ -380,9 +380,10 @@
 								<!--<div class="sub-dropdownbr"> -->
                                 <div class="sub-dropdown">
                                    <a class="sub-dropbtn">Branchwise Report <i class="fa fa-angle-right" style="float: right;"></i></a> 
-								   <div class="sub-dropdown-content">
+								   <div class="sub-dropdown-content">  
 										<a href="<?php echo site_url("fert/rep/stkStmt_ho");?>">Consolidated Stock</a>
-										<a href="<?php echo site_url("fert/rep/stkScomp_ho");?>">Companywise Stock</a>
+										<a href="<?php echo site_url("fert/rep/stock_valuation");?>">Stock Valuation</a>
+                                        <a href="<?php echo site_url("fert/rep/stkScomp_ho");?>">Companywise Stock</a>
 										<a href="<?php echo site_url("fert/rep/purrepbr");?>">Purchase</a>
 										<a href="<?php echo site_url("fert/rep/salerepbr");?>">Sale</a>
 										<a href="<?php echo site_url("fert/rep/active_society");?>">Active Society</a>
