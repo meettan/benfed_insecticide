@@ -130,6 +130,7 @@ tr:hover {background-color: #f5f5f5;}
 
                                 <th>Total amt</th>
                                 <th>TDS(.1%)</th>
+                                <th>District</th>
 
                             </tr>
 
@@ -168,6 +169,7 @@ tr:hover {background-color: #f5f5f5;}
 
                                 <tr class="rep">
                                      <td class="report"><?php echo $i++; ?></td>
+                                     
                                      <td class="report"><?php echo $purc->short_name; ?></td>
                                      <td class="report"><?php echo $purc->PROD_DESC; ?></td>
                                      <td class="report"><?php echo $purc->HSN_CODE; ?></td>
@@ -304,7 +306,7 @@ tr:hover {background-color: #f5f5f5;}
                                                                   $tot_tds += round((($purc->net_amt*.1)/100),2);
 
                                      ?></td>
-                                   
+                                    <td class="report"><?php echo $purc->district_name; ?></td>
                                 </tr>
  
                                 <?php  
@@ -345,7 +347,7 @@ tr:hover {background-color: #f5f5f5;}
                                <td class="report"><b><?=$sgst?></b></td>
                                <td class="report"><b><?=$total?></b></td> 
                                <td class="report"><b><?=round($tot_tds,2)?></b></td> 
-
+                            <td></td>
                             </tr>
                         </tfooter>
                         <?php } ?>
