@@ -1180,6 +1180,7 @@ public function f_get_dist_bnk_dtls(){
 		$where = array('a.receipt_no = b.receipt_no' => NULL,
 		               'a.detail_receipt_no = b.detail_receipt_no' => NULL,
 					   'b.receipt_no = c.receipt_no' => NULL,
+					   'b.amount = c.adv_amt' => NULL,
 					   'c.soc_id = d.soc_id' => NULL,
 					    'a.fwd_receipt_no' => $this->input->get('fwd_receipt_no')); 
 		$data['fwds'] = $this->AdvanceModel->f_select('tdf_adv_fwd a,td_adv_details b,tdf_advance c,mm_ferti_soc d',$select,$where,0); 
