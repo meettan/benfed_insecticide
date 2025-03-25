@@ -1965,6 +1965,7 @@ and a.ro_no not in (select sale_ro from td_sale
          and c.trans_dt between '$frmDt' and '$toDt'
          and c.trans_dt and c.tot_amt>0
            )a
+           where soc_id>0
             group by soc_id,soc_name,ro_no,ro_dt,inv_no 
             ORDER BY a.trans_dt,a.inv_no";
         $query  = $this->db->query($sql);
