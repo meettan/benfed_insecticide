@@ -430,8 +430,8 @@ public function advancefilter(){
         "b.district"          => $this->session->userdata['loggedin']['branch_id'],
         "a.fin_yr"            => $this->session->userdata['loggedin']['fin_id'],
 		"a.trans_type='I'"    => NULL,
-		"a.trans_dt between '".date("Y-m-d")."' and '".date("Y-m-d")."'"=> NULL
-        );
+		"a.trans_dt between '".date("Y-m-d")."' and '".date("Y-m-d")."'"=> NULL,
+		"1 group by a.receipt_no,a.trans_dt,a.soc_id,a.trans_type,b.soc_name,a.forward_flag" =>NULL );
 
 		$adv['data']    = $this->AdvanceModel->f_select("tdf_advance a,mm_ferti_soc b",$select,$where,0);
 		// print_r($adv['data']);
