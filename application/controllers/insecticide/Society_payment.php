@@ -3683,8 +3683,10 @@ public function deleteAccCd() {
 	}
 	public function get_paymentreceived_id(){
 		$rono = $this->input->get('ro_no');
-		$br     = $this->session->userdata['loggedin']['branch_id'];
+		$br     = $this->session->userdata[ 'loggedin']['branch_id'];
 		$sql = "SELECT distinct paid_id FROM tdf_payment_recv WHERE approval_status = 'U' AND ro_no = '".$rono."' AND  branch_id ='".$br."'";
+		// $this->db->last_query();
+		// die();
 		$data  = $this->db->query($sql)->result();
 		echo json_encode($data);
 	}
@@ -3797,7 +3799,7 @@ public function deleteAccCd() {
 		$fwd_no = $this->input->get('fwd_no');
 		$fin_yr = $this->input->get('fin_yr');
 		$data['spfwd'] = $this->AdvanceModel->f_select('tdf_payment_forward',NULL,array('fwd_no'=>$fwd_no,'fin_yr'=>$fin_yr),1);
-		$data['result'] = $this->Society_paymentModel->f_getfwdpaydetls($fwd_no);
+		$data['result'] = $this->Society_paymentModel->f_getfwdpaydetls($fwd_no,$dist_id);
 		$this->load->view("post_login/fertilizer_main");
 		$this->load->view("society_payment/socpayfwdedit",$data);
 		$this->load->view('post_login/footer');

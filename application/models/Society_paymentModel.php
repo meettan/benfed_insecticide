@@ -997,7 +997,7 @@
 				return $data->result();
 		}
 
-		public function f_getfwdpaydetls($fwd_no){
+		public function f_getfwdpaydetls($fwd_no,$dist_id){
 
 			$sql = "SELECT Distinct `a`.`sale_invoice_no`, 
 						`b`.`qty`, 
@@ -1006,6 +1006,7 @@
 						WHERE `a`.`sale_invoice_no` = `b`.`trans_do` 
 						AND `a`.`soc_id` = `c`.`soc_id` 
 						ANd `a`.`paid_id` = `d`.`paid_id`
+						AND `a`.`branch_id` = '.$dist_id.'
 						AND `d`.`fwd_no` = '".$fwd_no."'  ";
 		    $result = $this->db->query($sql);	
 			return $result->result();
