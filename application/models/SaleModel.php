@@ -531,7 +531,7 @@ return $sql->result();
 			// $user_id    = $this->session->userdata('login')->user_id;
 			
 	
-		$data = $this->db->query("select a.irn, a.ack,a.ack_dt,a.trans_do,a.do_dt,a.trans_type,b.soc_name,sum(a.tot_amt) as tot_amt,c.prod_desc,a.gst_type_flag,(select count(paid_id) from tdf_payment_recv where sale_invoice_no=a.trans_do) as pay_cnt
+		$data = $this->db->query("select a.irn, a.ack,a.ack_dt,a.trans_do,a.do_dt,a.trans_type,b.soc_name,a.tot_amt as tot_amt,c.prod_desc,a.gst_type_flag,(select count(paid_id) from tdf_payment_recv where sale_invoice_no=a.trans_do) as pay_cnt
 									from td_sale a,mm_ferti_soc b,mm_product c
 									where br_cd='$banch_id' 
 									and fin_yr='$fin_id'
