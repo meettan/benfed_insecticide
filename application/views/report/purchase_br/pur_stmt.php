@@ -83,7 +83,7 @@ tr:hover {background-color: #f5f5f5;}
                             <tr>
                             
                                 <th>Sl No.</th>
-
+                                <th>Entry Date</th>
                                 <th>Company</th>
 
                                 <th>Product</th>
@@ -169,7 +169,8 @@ tr:hover {background-color: #f5f5f5;}
 
                                 <tr class="rep">
                                      <td class="report"><?php echo $i++; ?></td>
-                                     <td class="report"><?php echo $purc->trans_dt; ?></td>
+                                     <td class="report"><?php echo date("d/m/Y",strtotime($purc->trans_dt)); ?>
+                                    </td>
                                      <td class="report"><?php echo $purc->short_name; ?></td>
                                      <td class="report"><?php echo $purc->PROD_DESC; ?></td>
                                      <td class="report"><?php echo $purc->HSN_CODE; ?></td>
