@@ -169,7 +169,7 @@ tr:hover {background-color: #f5f5f5;}
 
                                 <tr class="rep">
                                      <td class="report"><?php echo $i++; ?></td>
-                                     
+                                     <td class="report"><?php echo $purc->trans_dt; ?></td>
                                      <td class="report"><?php echo $purc->short_name; ?></td>
                                      <td class="report"><?php echo $purc->PROD_DESC; ?></td>
                                      <td class="report"><?php echo $purc->HSN_CODE; ?></td>
@@ -329,7 +329,7 @@ tr:hover {background-color: #f5f5f5;}
                         <?php if(!empty($purchase)){ ?>
                         <tfooter>
                             <tr>
-                               <td class="report" colspan="12" style="text-align:right"><b>Total</b></td> 
+                               <td class="report" colspan="13" style="text-align:right"><b>Total</b></td> 
                                <td class="report"><b><?=$base_price?></b></td>
                                <td class="report"><b><?=$retlr_margin?></b></td>
                                <td class="report"><b><?=$add_adj_amt?></b></td>
