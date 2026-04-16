@@ -1409,65 +1409,133 @@ public function hsnsumrypurrep(){
 
 /******************************Branchwise Purchase Report at HO (individual and all branch)***************************** */        
 
+        // public function purrepbr(){
+
+        //     if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+        //         $from_dt    =   $_POST['from_date'];
+
+        //         $to_dt      =   $_POST['to_date'];
+
+        //         $company    =    $this->input->post('comid');
+
+        //         $branch     =  $_POST['br'];
+
+
+        //         if($branch!='0'){
+
+        //             $_SESSION['date']    =   date('d/m/Y',strtotime($from_dt)).'-'.date('d/m/Y',strtotime($to_dt));
+                    
+                    
+        //             $where1              =   array("district_code"  => $branch);
+
+        //             $data['branch']      =   $this->ReportModel->f_select("md_district", NULL, $where1,1);
+
+        //             $select1             = array("district_code","district_name");
+
+        //             $data['all_branch']  =   $this->ReportModel->f_select("md_district", $select1, NULL,0);
+
+        //             $data['purchase']=$this->ReportModel->pc($from_dt,$to_dt,$branch,$company);
+
+        //             $this->load->view('post_login/fertilizer_main');
+        //             $this->load->view('report/purchase_br/pur_stmt',$data);
+        //             $this->load->view('post_login/footer');
+
+        //     }else{
+                
+        //             $all_data_n           =   array($from_dt,$to_dt,$company);
+                    
+        //             $_SESSION['date']     =   date('d/m/Y',strtotime($from_dt)).'-'.date('d/m/Y',strtotime($to_dt));
+                    
+        //             $data['branch']       =   "0";
+                    
+        //             $data['purchase']     =   $this->ReportModel->pcn($from_dt,$to_dt,$company);
+
+        //             $this->load->view('post_login/fertilizer_main');
+        //             $this->load->view('report/purchase_br/pur_stmt',$data);
+        //             $this->load->view('post_login/footer');
+        //     }
+
+        //     }else{
+        //         $select1      = array("district_code","district_name");
+		// 		$select2      = array("COMP_ID","COMP_NAME");
+        //         $data['all_company']      =   $this->ReportModel->f_select("mm_company_dtls", $select2, array('1 order by COMP_NAME'=>NULL),0);
+        //         $data['all_branch']      =   $this->ReportModel->f_select("md_district", $select1, array('1 order by district_name'=>NULL),0);
+        //         $this->load->view('post_login/fertilizer_main');
+        //         $this->load->view('report/purchase_br/pur_stmt_ip',$data);
+        //         $this->load->view('post_login/footer');
+        //     }
+
+        // }
+
         public function purrepbr(){
 
             if($_SERVER['REQUEST_METHOD'] == "POST") {
-
-                $from_dt    =   $_POST['from_date'];
-
-                $to_dt      =   $_POST['to_date'];
-
-                $company    =    $this->input->post('comid');
-
-                $branch     =  $_POST['br'];
-
-
-                if($branch!='0'){
-
-                    $_SESSION['date']    =   date('d/m/Y',strtotime($from_dt)).'-'.date('d/m/Y',strtotime($to_dt));
-                    
-                    
-                    $where1              =   array("district_code"  => $branch);
-
-                    $data['branch']      =   $this->ReportModel->f_select("md_district", NULL, $where1,1);
-
-                    $select1             = array("district_code","district_name");
-
-                    $data['all_branch']  =   $this->ReportModel->f_select("md_district", $select1, NULL,0);
-
-                    $data['purchase']=$this->ReportModel->pc($from_dt,$to_dt,$branch,$company);
-
-                    $this->load->view('post_login/fertilizer_main');
-                    $this->load->view('report/purchase_br/pur_stmt',$data);
-                    $this->load->view('post_login/footer');
-
-            }else{
-                
-                    $all_data_n           =   array($from_dt,$to_dt,$company);
-                    
-                    $_SESSION['date']     =   date('d/m/Y',strtotime($from_dt)).'-'.date('d/m/Y',strtotime($to_dt));
-                    
-                    $data['branch']       =   "0";
-                    
-                    $data['purchase']     =   $this->ReportModel->pcn($from_dt,$to_dt,$company);
-
-                    $this->load->view('post_login/fertilizer_main');
-                    $this->load->view('report/purchase_br/pur_stmt',$data);
-                    $this->load->view('post_login/footer');
+        
+                $from_dt  = $_POST['from_date'];
+                $to_dt    = $_POST['to_date'];
+                $company  = $this->input->post('comid');
+                $branch   = $_POST['br'];
+        
+                $_SESSION['date'] = date('d/m/Y',strtotime($from_dt)).'-'.date('d/m/Y',strtotime($to_dt));
+        
+                $select1 = array("district_code","district_name");
+                $select2 = array("COMP_ID","COMP_NAME");
+        
+                $data['all_branch']  = $this->ReportModel->f_select("md_district", $select1, NULL,0);
+                $data['all_company'] = $this->ReportModel->f_select("mm_company_dtls", $select2, NULL,0);
+        
+                // ✅ CASE 1: All Branch + All Company
+                if($branch == '0' && $company == '0'){
+        
+                    $data['branch']   = "0";
+                    $data['purchase'] = $this->ReportModel->pc_all($from_dt,$to_dt);
+        
+                }
+                // ✅ CASE 2: Specific Branch + All Company
+                elseif($branch != '0' && $company == '0'){
+        
+                    $where1 = array("district_code" => $branch);
+                    $data['branch'] = $this->ReportModel->f_select("md_district", NULL, $where1,1);
+        
+                    $data['purchase'] = $this->ReportModel->pc_branch($from_dt,$to_dt,$branch);
+        
+                }
+                // ✅ CASE 3: All Branch + Specific Company
+                elseif($branch == '0' && $company != '0'){
+        
+                    $data['branch'] = "0";
+                    $data['purchase'] = $this->ReportModel->pcn($from_dt,$to_dt,$company);
+        
+                }
+                // ✅ CASE 4: Specific Branch + Specific Company
+                else{
+        
+                    $where1 = array("district_code" => $branch);
+                    $data['branch'] = $this->ReportModel->f_select("md_district", NULL, $where1,1);
+        
+                    $data['purchase'] = $this->ReportModel->pc($from_dt,$to_dt,$branch,$company);
+        
+                }
+        
+                $this->load->view('post_login/fertilizer_main');
+                $this->load->view('report/purchase_br/pur_stmt',$data);
+                $this->load->view('post_login/footer');
+        
             }
-
-            }else{
-                $select1      = array("district_code","district_name");
-				$select2      = array("COMP_ID","COMP_NAME");
-                $data['all_company']      =   $this->ReportModel->f_select("mm_company_dtls", $select2, array('1 order by COMP_NAME'=>NULL),0);
-                $data['all_branch']      =   $this->ReportModel->f_select("md_district", $select1, array('1 order by district_name'=>NULL),0);
+            else{
+        
+                $select1 = array("district_code","district_name");
+                $select2 = array("COMP_ID","COMP_NAME");
+        
+                $data['all_company'] = $this->ReportModel->f_select("mm_company_dtls", $select2, array('1 order by COMP_NAME'=>NULL),0);
+                $data['all_branch']  = $this->ReportModel->f_select("md_district", $select1, array('1 order by district_name'=>NULL),0);
+        
                 $this->load->view('post_login/fertilizer_main');
                 $this->load->view('report/purchase_br/pur_stmt_ip',$data);
                 $this->load->view('post_login/footer');
             }
-
         }
-
 
 ////************************************************* */
 public function crngstunreg(){

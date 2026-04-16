@@ -83,7 +83,7 @@ tr:hover {background-color: #f5f5f5;}
                             <tr>
                             
                                 <th>Sl No.</th>
-                                <th>Entry Date</th>
+                                <th>Trans Dt</th>
                                 <th>Company</th>
 
                                 <th>Product</th>
@@ -95,18 +95,15 @@ tr:hover {background-color: #f5f5f5;}
                                 <th>Invoice No</th>
 
                                 <th>Invoice Date</th>
+                                <th>District</th>
 
                                 <th>Society</th>
 
-                               <!--  <th>Invoice no</th> -->
-
-                                <!-- <th>Invoice Dt</th> -->
 
                                 <th>Qty</th>
 
                                 <th>Unit</th>
 
-                                <!-- <th>Stock Qty</th> -->
 
                                 <th>Rate</th>
 
@@ -130,7 +127,8 @@ tr:hover {background-color: #f5f5f5;}
 
                                 <th>Total amt</th>
                                 <th>TDS(.1%)</th>
-                                <th>District</th>
+
+                                <th>Advance Status</th>
 
                             </tr>
 
@@ -169,8 +167,7 @@ tr:hover {background-color: #f5f5f5;}
 
                                 <tr class="rep">
                                      <td class="report"><?php echo $i++; ?></td>
-                                     <td class="report"><?php echo date("d/m/Y",strtotime($purc->trans_dt)); ?>
-                                    </td>
+                                     <td class="report"><?php echo date("d/m/Y",strtotime($purc->trans_dt)); ?></td>
                                      <td class="report"><?php echo $purc->short_name; ?></td>
                                      <td class="report"><?php echo $purc->PROD_DESC; ?></td>
                                      <td class="report"><?php echo $purc->HSN_CODE; ?></td>
@@ -178,9 +175,10 @@ tr:hover {background-color: #f5f5f5;}
                                      <td class="report"><?php echo date("d/m/Y",strtotime($purc->ro_dt)); ?></td>
                                      <td class="report"><?php echo $purc->invoice_no ?></td>
                                      <td class="report"><?php echo date("d/m/Y",strtotime($purc->invoice_dt)); ?></td>
+                                     <td class="report"><?php echo $purc->district_name; ?></td>
                                      <td class="report"><?php echo $purc->soc_name; ?></td>
                                      <!-- <td class="report"><?php //echo date("d/m/y",strtotime($purc->invoice_dt)); ?></td> -->
-                                     <td class="report"><?php
+                                     <td class="report" width="90%" ><?php
                                     //  echo $purc->qty; 
                                      if($purc->unit==1){
 
@@ -307,7 +305,7 @@ tr:hover {background-color: #f5f5f5;}
                                                                   $tot_tds += round((($purc->net_amt*.1)/100),2);
 
                                      ?></td>
-                                    <td class="report"><?php echo $purc->district_name; ?></td>
+                                    <td class="report"><?php echo $purc->adv_flag; ?></td>
                                 </tr>
  
                                 <?php  
@@ -330,7 +328,7 @@ tr:hover {background-color: #f5f5f5;}
                         <?php if(!empty($purchase)){ ?>
                         <tfooter>
                             <tr>
-                               <td class="report" colspan="13" style="text-align:right"><b>Total</b></td> 
+                               <td class="report" colspan="14" style="text-align:right"><b>Total</b></td> 
                                <td class="report"><b><?=$base_price?></b></td>
                                <td class="report"><b><?=$retlr_margin?></b></td>
                                <td class="report"><b><?=$add_adj_amt?></b></td>
@@ -348,7 +346,7 @@ tr:hover {background-color: #f5f5f5;}
                                <td class="report"><b><?=$sgst?></b></td>
                                <td class="report"><b><?=$total?></b></td> 
                                <td class="report"><b><?=round($tot_tds,2)?></b></td> 
-                            <td></td>
+
                             </tr>
                         </tfooter>
                         <?php } ?>
