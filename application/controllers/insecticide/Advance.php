@@ -414,7 +414,7 @@ public function advancefilter(){
 			"a.fin_yr"              => $this->session->userdata['loggedin']['fin_id'],
 			"a.trans_type='I'"   => NULL,
 			"a.trans_dt between '$frmdt ' and '$todt'"=> NULL,
-			"1 group by a.receipt_no,a.trans_dt,a.soc_id,a.trans_type,b.soc_name,a.forward_flag" =>NULL
+			"1 group by a.receipt_no,a.trans_dt,a.soc_id,a.trans_type,b.soc_name,a.adv_amt,a.forward_flag" =>NULL
 		);
 	
 		$adv['data']    = $this->AdvanceModel->f_select("tdf_advance a,mm_ferti_soc b",$select,$where,0);
@@ -431,7 +431,7 @@ public function advancefilter(){
         "a.fin_yr"            => $this->session->userdata['loggedin']['fin_id'],
 		"a.trans_type='I'"    => NULL,
 		"a.trans_dt between '".date("Y-m-d")."' and '".date("Y-m-d")."'"=> NULL,
-		"1 group by a.receipt_no,a.trans_dt,a.soc_id,a.trans_type,b.soc_name,a.forward_flag" =>NULL );
+		"1 group by a.receipt_no,a.trans_dt,a.soc_id,a.trans_type,b.soc_name,a.adv_amt,a.forward_flag" =>NULL );
 
 		$adv['data']    = $this->AdvanceModel->f_select("tdf_advance a,mm_ferti_soc b",$select,$where,0);
 		// print_r($adv['data']);
